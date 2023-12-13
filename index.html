@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My website</title>
+  </head>
+  <body>
+    <div>
+      <form>
+        <h1>Input Information:</h1>
+        <label>First Name:</label>
+        <input type="text" id="txtfirstName" required /><br />
+        <label>Last Name:</label>
+        <input type="text" id="txtlastName" required /><br />
+        <label>Section:</label>
+        <input type="text" id="txtSection" required /><br />
+        <label>Year:</label>
+        <input type="text" id="txtYear" required /><br />
+
+        <h2>Input Grades:</h2>
+        <label>Mathematics:</label>
+        <input type="number" id="math" min="0" max="99" required /><br />
+        <label>Science:</label>
+        <input type="number" id="science" min="0" max="99" required /><br />
+        <label>English:</label>
+        <input type="number" id="english" min="0" max="99" required /><br />
+        <label>Filipino:</label>
+        <input type="number" id="filipino" min="0" max="99" required /><br />
+        <label>History:</label>
+        <input type="number" id="history" min="0" max="99" required /><br /><br />
+
+        <button type="button" onclick="calculate_average()">Submit</button>
+      </form>
+    </div>
+    <div id="display"></div>
+  </body>
+  <script type="text/javascript">
+    function calculate_average() {
+      const txtfirstName = document.getElementById("txtfirstName").value;
+      const txtlastName = document.getElementById("txtlastName").value;
+      const txtSection = document.getElementById("txtSection").value;
+      const txtYear = document.getElementById("txtYear").value;
+
+      const math = parseFloat(document.getElementById("math").value);
+      const science = parseFloat(document.getElementById("science").value);
+      const english = parseFloat(document.getElementById("english").value);
+      const filipino = parseFloat(document.getElementById("filipino").value);
+      const history = parseFloat(document.getElementById("history").value);
+
+      const average = (math + science + english + filipino + history) / 5;
+      var result = "";
+
+      if(average > 90){
+        result = "With Honors";
+      }
+      else if(average <= 90 && average >= 75){
+        result = "Passed";
+      }
+      else{
+        result = "Failed";
+      }
+
+      const displayDiv = document.getElementById("display");
+      displayDiv.innerHTML = `
+                <p>Name: ${txtfirstName} ${txtlastName} | Section: ${txtSection} | Year Level: ${txtYear}</p>
+                <p>Average Grade: ${average}</p>
+                <p>${result}</p>
+            `;
+    }
+  </script>
+</html>
